@@ -1,4 +1,4 @@
-import MenuItem from './components/MenuItem';
+import MenuItems from './components/MenuItems';
 import useOrder from './hook/useOrder';
 import { menuItems } from './data/db';
 import OrderContent from './components/OrderContent';
@@ -19,7 +19,7 @@ function App() {
           <h2 className="mb-8 text-center text-2xl font-bold uppercase">Menú</h2>
           {
             menuItems.map((item) =>
-              <MenuItem
+              <MenuItems
                 key={item.id}
                 item={item}
                 addItem={addItem}

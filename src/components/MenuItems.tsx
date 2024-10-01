@@ -1,12 +1,12 @@
 import { formatCurrency } from "../helpers";
 import { MenuItem } from "../types"
 
-type MenuItemProps = {
+type MenuItemsProps = {
   item: MenuItem;
   addItem: (item: MenuItem) => void;
 }
 
-const MenuItem = ({ item, addItem }: MenuItemProps) => {
+const MenuItems = ({ item, addItem }: MenuItemsProps) => {
   return (
     <div
       key={item.id}
@@ -24,4 +24,4 @@ const MenuItem = ({ item, addItem }: MenuItemProps) => {
   )
 }
 
-export default MenuItem
+export default MenuItems
