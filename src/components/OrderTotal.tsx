@@ -4,9 +4,10 @@ import { OrderItem } from "../types";
 type OrderTotalProps = {
   order: OrderItem[];
   tip: number;
+  clearOrder: () => void;
 }
 
-const OrderTotal = ({ order, tip }: OrderTotalProps) => {
+const OrderTotal = ({ order, tip, clearOrder }: OrderTotalProps) => {
   const subtotal = order.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const tipQuanity = subtotal * tip;
   const total = subtotal + tipQuanity;
@@ -29,6 +30,7 @@ const OrderTotal = ({ order, tip }: OrderTotalProps) => {
         </p>
 
         <button
+          onClick={clearOrder}
           className="w-full p-4 block text-center font-bold uppercase text-white bg-black ease-in-out duration-300 hover:bg-gray-900">
           Guardar Orden
         </button>

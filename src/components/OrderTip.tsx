@@ -1,5 +1,4 @@
 type OrderTipProps = {
-  tip: number;
   setTip: (tip: number) => void;
 }
 
@@ -21,7 +20,7 @@ const tipOptions = [
   },
 ]
 
-const OrderTip = ({ tip, setTip }: OrderTipProps) => {
+const OrderTip = ({ setTip }: OrderTipProps) => {
   return (
     <form >
       <div className="space-y-4">

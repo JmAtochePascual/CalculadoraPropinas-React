@@ -29,12 +29,19 @@ const useOrder = () => {
     setOrder([...order, { ...item, quantity: 1 }])
   }
 
+  // Clear the order
+  const clearOrder = () => {
+    setOrder([])
+    setTip(0)
+  }
+
   return {
     order,
     tip,
     setTip,
     addItem,
-    deleteItem
+    deleteItem,
+    clearOrder
   }
 }
 

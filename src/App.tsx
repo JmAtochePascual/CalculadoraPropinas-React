@@ -6,7 +6,7 @@ import OrderTotal from './components/OrderTotal';
 import OrderTip from './components/OrderTip';
 
 function App() {
-  const { order, tip, setTip, addItem, deleteItem } = useOrder()
+  const { order, tip, setTip, addItem, deleteItem, clearOrder } = useOrder()
 
   return (
     <>
@@ -39,14 +39,15 @@ function App() {
               />
             )
           }
+
           <OrderTip
-            tip={tip}
             setTip={setTip}
           />
 
           <OrderTotal
             order={order}
             tip={tip}
+            clearOrder={clearOrder}
           />
         </div>
       </main >
