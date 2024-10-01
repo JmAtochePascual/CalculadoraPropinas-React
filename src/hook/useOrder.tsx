@@ -10,6 +10,12 @@ const useOrder = () => {
     setOrder(newOrder)
   }
 
+  // Delete an item from the order
+  const deleteItem = (id: OrderItem['id']) => {
+    const newOrder = order.filter((orderItem) => orderItem.id !== id)
+    setOrder(newOrder)
+  }
+
   // Add an item to the order or increase its quantity if it already exists
   const addItem = (item: MenuItem) => {
     const existingItem = order.find((orderItem) => orderItem.id === item.id)
@@ -25,6 +31,7 @@ const useOrder = () => {
   return {
     order,
     addItem,
+    deleteItem
   }
 }
 

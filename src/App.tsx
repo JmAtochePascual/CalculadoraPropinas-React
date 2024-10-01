@@ -4,7 +4,7 @@ import { menuItems } from './data/db';
 import { formatCurrency } from './helpers';
 
 function App() {
-  const { order, addItem } = useOrder();
+  const { order, addItem, deleteItem } = useOrder();
 
   return (
     <>
@@ -38,6 +38,7 @@ function App() {
                   <p className='font-black'>{item.quantity} - {formatCurrency(item.price * item.quantity)}</p>
                 </div>
                 <button
+                  onClick={() => deleteItem(item.id)}
                   className="w-8 h-8 bg-red-500 text-white font-bold rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 transition duration-300 ease-in-out">
                   X
                 </button>
