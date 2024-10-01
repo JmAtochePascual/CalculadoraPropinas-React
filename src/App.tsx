@@ -2,6 +2,7 @@ import MenuItem from './components/MenuItem';
 import useOrder from './hook/useOrder';
 import { menuItems } from './data/db';
 import { formatCurrency } from './helpers';
+import OrderContent from './components/OrderContent';
 
 function App() {
   const { order, addItem, deleteItem } = useOrder();
@@ -30,19 +31,11 @@ function App() {
           <h2 className="mb-8 text-center text-2xl font-bold text-gray-600">Orden</h2>
           {
             order.map((item) =>
-              <div
+              <OrderContent
                 key={item.id}
-                className="py-4 flex justify-between items-center border-t border-gray-200 last-of-type:border-b">
-                <div>
-                  <p>{item.name} - {formatCurrency(item.price)}</p>
-                  <p className='font-black'>{item.quantity} - {formatCurrency(item.price * item.quantity)}</p>
-                </div>
-                <button
-                  onClick={() => deleteItem(item.id)}
-                  className="w-8 h-8 bg-red-500 text-white font-bold rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-600 transition duration-300 ease-in-out">
-                  X
-                </button>
-              </div>
+                item={item}
+                deleteItem={deleteItem}
+              />
             )
           }
         </div>
