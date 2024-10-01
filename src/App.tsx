@@ -16,7 +16,7 @@ function App() {
 
       <main className="w-11/12 max-w-7xl mx-auto pb-12 grid gap-8 md:grid-cols-2">
         <div className="">
-          <h2 className="mb-8 text-center text-2xl font-bold text-gray-600">Menú</h2>
+          <h2 className="mb-8 text-center text-2xl font-bold uppercase">Menú</h2>
           {
             menuItems.map((item) =>
               <MenuItem
@@ -29,26 +29,33 @@ function App() {
         </div>
 
         <div>
-          <h2 className="mb-8 text-center text-2xl font-bold text-gray-600">Orden</h2>
+          <h2 className="mb-8 text-center text-2xl font-bold uppercase">Orden</h2>
+
           {
-            order.map((item) =>
-              <OrderContent
-                key={item.id}
-                item={item}
-                deleteItem={deleteItem}
-              />
-            )
+            order.length === 0
+              ? <p className="text-center">Aún no hay platillos en la orden</p>
+              : <>
+                {
+                  order.map((item) =>
+                    <OrderContent
+                      key={item.id}
+                      item={item}
+                      deleteItem={deleteItem}
+                    />
+                  )
+                }
+
+                <OrderTip
+                  setTip={setTip}
+                />
+
+                <OrderTotal
+                  order={order}
+                  tip={tip}
+                  clearOrder={clearOrder}
+                />
+              </>
           }
-
-          <OrderTip
-            setTip={setTip}
-          />
-
-          <OrderTotal
-            order={order}
-            tip={tip}
-            clearOrder={clearOrder}
-          />
         </div>
       </main >
     </>
