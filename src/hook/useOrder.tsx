@@ -23,6 +23,7 @@ const useOrder = () => {
   }
 
   return {
+    order,
     addItem,
   }
 }

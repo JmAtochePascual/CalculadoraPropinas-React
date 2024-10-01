@@ -1,3 +1,4 @@
+import { formatCurrency } from "../helpers";
 import { MenuItem } from "../types"
 
 type MenuItemProps = {
@@ -12,7 +13,7 @@ const MenuItem = ({ item, addItem }: MenuItemProps) => {
       className="mb-4 flex justify-between items-center py-2 px-4 border rounded-md border-teal-400">
       <div>
         <p className="text-lg font-bold text-gray-800">{item.name}</p>
-        <p className="text-lg font-black">${item.price}</p>
+        <p className="text-lg font-black">{formatCurrency(item.price)}</p>
       </div>
       <button
         onClick={() => addItem(item)}
