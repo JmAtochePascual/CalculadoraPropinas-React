@@ -1,8 +1,8 @@
 import MenuItem from './components/MenuItem';
 import useOrder from './hook/useOrder';
 import { menuItems } from './data/db';
-import { formatCurrency } from './helpers';
 import OrderContent from './components/OrderContent';
+import OrderTotal from './components/OrderTotal';
 
 function App() {
   const { order, addItem, deleteItem } = useOrder();
@@ -27,7 +27,7 @@ function App() {
           }
         </div>
 
-        <div className="">
+        <div>
           <h2 className="mb-8 text-center text-2xl font-bold text-gray-600">Orden</h2>
           {
             order.map((item) =>
@@ -38,6 +38,10 @@ function App() {
               />
             )
           }
+
+          <OrderTotal
+            order={order}
+          />
         </div>
       </main >
     </>
