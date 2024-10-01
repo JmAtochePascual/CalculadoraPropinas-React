@@ -3,6 +3,7 @@ import { MenuItem, OrderItem } from "../types"
 
 const useOrder = () => {
   const [order, setOrder] = useState<OrderItem[]>([])
+  const [tip, setTip] = useState(0)
 
   // Icrease the quantity of an item in the order
   const increaseQuantity = (id: OrderItem['id']) => {
@@ -30,6 +31,8 @@ const useOrder = () => {
 
   return {
     order,
+    tip,
+    setTip,
     addItem,
     deleteItem
   }

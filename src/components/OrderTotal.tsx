@@ -3,24 +3,25 @@ import { OrderItem } from "../types";
 
 type OrderTotalProps = {
   order: OrderItem[];
+  tip: number;
 }
 
-const OrderTotal = ({ order }: OrderTotalProps) => {
+const OrderTotal = ({ order, tip }: OrderTotalProps) => {
   const subtotal = order.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  const tip = subtotal * 0.1;
-  const total = subtotal + tip;
+  const tipQuanity = subtotal * tip;
+  const total = subtotal + tipQuanity;
 
   return (
     <div>
-      <div className="space-y-4">
-        <h2 className="font-black text-2xl">Totales y Propina</h2>
+      <div className="space-y-3">
+        <h2 className="font-black text-2xl text-center">Totales y Propina</h2>
 
         <p>
           Subtotal a pagar: <span className="font-bold">{formatCurrency(subtotal)}</span>
         </p>
 
         <p>
-          Propina: <span className="font-bold">{formatCurrency(tip)}</span>
+          Propina: <span className="font-bold">{formatCurrency(tipQuanity)}</span>
         </p>
 
         <p>
