@@ -1,12 +1,13 @@
 import MenuItems from './components/MenuItems';
-import useOrder from './hook/useOrder';
 import { menuItems } from './data/db';
 import OrderContent from './components/OrderContent';
 import OrderTotal from './components/OrderTotal';
 import OrderTip from './components/OrderTip';
+import { initialState, orderReducer } from './reducer/orderReducer';
+import { useReducer } from 'react';
 
 function App() {
-  const { order, tip, setTip, addItem, deleteItem, clearOrder } = useOrder()
+  const [state, dispatch] = useReducer(orderReducer, initialState)
 
   return (
     <>
@@ -22,7 +23,7 @@ function App() {
               <MenuItems
                 key={item.id}
                 item={item}
-                addItem={addItem}
+                dispatch={dispatch}
               />
             )
           }
@@ -32,27 +33,27 @@ function App() {
           <h2 className="mb-8 text-center text-2xl font-bold uppercase">Orden</h2>
 
           {
-            order.length === 0
+            state.order.length === 0
               ? <p className="text-center">Aún no hay platillos en la orden</p>
               : <>
                 {
-                  order.map((item) =>
+                  state.order.map((item) =>
                     <OrderContent
                       key={item.id}
                       item={item}
-                      deleteItem={deleteItem}
+                      dispatch={dispatch}
                     />
                   )
                 }
 
                 <OrderTip
-                  setTip={setTip}
+                  dispatch={dispatch}
                 />
 
                 <OrderTotal
-                  order={order}
-                  tip={tip}
-                  clearOrder={clearOrder}
+                  order={state.order}
+                  tip={state.tip}
+                  dispatch={dispatch}
                 />
               </>
           }

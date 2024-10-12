@@ -1,13 +1,15 @@
+import { Dispatch } from "react";
 import { formatCurrency } from "../helpers";
 import { OrderItem } from "../types";
+import { OrderActions } from "../reducer/orderReducer";
 
 type OrderTotalProps = {
   order: OrderItem[];
   tip: number;
-  clearOrder: () => void;
+  dispatch: Dispatch<OrderActions>;
 }
 
-const OrderTotal = ({ order, tip, clearOrder }: OrderTotalProps) => {
+const OrderTotal = ({ order, tip, dispatch }: OrderTotalProps) => {
   const subtotal = order.reduce((acc, item) => acc + item.price * item.quantity, 0);
   const tipQuanity = subtotal * tip;
   const total = subtotal + tipQuanity;
@@ -23,7 +25,7 @@ const OrderTotal = ({ order, tip, clearOrder }: OrderTotalProps) => {
 
         <button
           disabled={tip === 0}
-          onClick={clearOrder}
+          onClick={() => dispatch({ type: 'clear-order' })}
           className="w-full p-4 block text-center font-bold uppercase text-white bg-black ease-in-out duration-300 hover:bg-gray-900 disabled:opacity-10">
           Guardar Orden
         </button>

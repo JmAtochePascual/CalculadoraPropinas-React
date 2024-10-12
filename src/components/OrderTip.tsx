@@ -1,5 +1,8 @@
+import { Dispatch } from "react";
+import { OrderActions } from "../reducer/orderReducer";
+
 type OrderTipProps = {
-  setTip: (tip: number) => void;
+  dispatch: Dispatch<OrderActions>;
 }
 
 const tipOptions = [
@@ -20,7 +23,7 @@ const tipOptions = [
   },
 ]
 
-const OrderTip = ({ setTip }: OrderTipProps) => {
+const OrderTip = ({ dispatch }: OrderTipProps) => {
   return (
     <form >
       <div className="space-y-4">
@@ -41,7 +44,7 @@ const OrderTip = ({ setTip }: OrderTipProps) => {
                 name="tip"
                 id={option.id}
                 value={option.value}
-                onChange={() => setTip(option.value)}
+                onChange={() => dispatch({ type: 'set-tip', payload: { tip: option.value } })}
                 className="cursor-pointer"
               />
             </div>
