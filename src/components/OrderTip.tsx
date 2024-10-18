@@ -1,9 +1,5 @@
-import { Dispatch } from "react";
-import { OrderActions } from "../reducer/orderReducer";
-
-type OrderTipProps = {
-  dispatch: Dispatch<OrderActions>;
-}
+import { orderContext } from "../contex/OrderContext";
+import { useContext } from "react";
 
 const tipOptions = [
   {
@@ -23,7 +19,9 @@ const tipOptions = [
   },
 ]
 
-const OrderTip = ({ dispatch }: OrderTipProps) => {
+const OrderTip = () => {
+  const { dispatch } = useContext(orderContext);
+
   return (
     <form >
       <div className="space-y-4">

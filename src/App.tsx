@@ -3,11 +3,11 @@ import { menuItems } from './data/db';
 import OrderContent from './components/OrderContent';
 import OrderTotal from './components/OrderTotal';
 import OrderTip from './components/OrderTip';
-import { initialState, orderReducer } from './reducer/orderReducer';
-import { useReducer } from 'react';
+import { useContext } from 'react';
+import { orderContext } from './contex/OrderContext';
 
 function App() {
-  const [state, dispatch] = useReducer(orderReducer, initialState)
+  const { state } = useContext(orderContext);
 
   return (
     <>
@@ -23,7 +23,6 @@ function App() {
               <MenuItems
                 key={item.id}
                 item={item}
-                dispatch={dispatch}
               />
             )
           }
@@ -41,19 +40,14 @@ function App() {
                     <OrderContent
                       key={item.id}
                       item={item}
-                      dispatch={dispatch}
                     />
                   )
                 }
 
-                <OrderTip
-                  dispatch={dispatch}
-                />
+                <OrderTip />
 
                 <OrderTotal
-                  order={state.order}
                   tip={state.tip}
-                  dispatch={dispatch}
                 />
               </>
           }

@@ -1,14 +1,15 @@
-import { Dispatch } from "react";
+import { useContext } from "react";
 import { formatCurrency } from "../helpers";
 import { MenuItem } from "../types"
-import { OrderActions } from "../reducer/orderReducer";
+import { orderContext } from "../contex/OrderContext";
 
 type MenuItemsProps = {
   item: MenuItem;
-  dispatch: Dispatch<OrderActions>;
 }
 
-const MenuItems = ({ item, dispatch }: MenuItemsProps) => {
+const MenuItems = ({ item }: MenuItemsProps) => {
+  const { dispatch } = useContext(orderContext);
+
   return (
     <div
       key={item.id}

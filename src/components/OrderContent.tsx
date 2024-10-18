@@ -1,14 +1,15 @@
-import { Dispatch } from "react";
+import { useContext } from "react";
 import { formatCurrency } from "../helpers";
 import { OrderItem } from "../types";
-import { OrderActions } from "../reducer/orderReducer";
+import { orderContext } from "../contex/OrderContext";
 
 type OrderContentProps = {
   item: OrderItem;
-  dispatch: Dispatch<OrderActions>;
 }
 
-const OrderContent = ({ item, dispatch }: OrderContentProps) => {
+const OrderContent = ({ item }: OrderContentProps) => {
+  const { dispatch } = useContext(orderContext);
+
   return (
     <div
       className="py-4 flex justify-between items-center border-t border-gray-200 last-of-type:border-b">
